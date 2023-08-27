@@ -1,6 +1,6 @@
 {
   "name": "@boot_scrap_van/random",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A random generator for JS and TS",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -21,6 +21,9 @@
     "randomizer",
     "random-js"
   ],
+  "files": [
+    "lib"
+  ],
   "author": "boot_scrap_van",
   "license": "LGPL-2.1-or-later",
   "devDependencies": {
@@ -30,5 +33,9 @@
     "ts-jest": "^29.1.1",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
