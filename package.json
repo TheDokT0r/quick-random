@@ -1,10 +1,10 @@
 {
   "name": "@boot_scrap_van/random",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A random generator for JS and TS",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
-  "types": "dist/index.d.ts",
+  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/TheDokT0r/random-js"
