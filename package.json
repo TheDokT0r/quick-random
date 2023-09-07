@@ -1,6 +1,6 @@
 {
   "name": "@boot_scrap_van/random",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A random generator for JS and TS",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
