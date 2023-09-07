@@ -2,7 +2,13 @@
  * Random number, string, boolean, array, element from array
  * @example
  * const random = require('random');
+*/
+
+/**
+ * Which type the random.array operation would return (so it wouldn't return unknown)
  */
+type ArrayType<T> = T extends 'number' ? number[] : T extends 'string' ? string[] : T extends 'boolean' ? boolean[] : never;
+
 const random = {
     /**
      * 
@@ -53,13 +59,13 @@ const random = {
      * Generate a random array
      * @param {number} length the length of the array
      * @param {'number' | 'string' | 'boolean'} type the type of the array
-     * @returns {number[] | string[] | boolean[]} a random array
+     * @returns {T[]} a random array
      * @example
      * random.array(10, 'number') // [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
      * random.array(10, 'string') // [ 'aBcDeFgHiJ', 'tUvWxYzAbC', 'dEfGhIjKlM', 'nOpQrStUvW', 'xYzAbCdEfG', 'hIjKlMnOpQ', 'rStUvWxYzA', 'bCdEfGhIjK', 'lMnOpQrStU', 'vWxYzAbCdE' ]
      * random.array(10, 'boolean') // [ true, false, true, false, true, false, true, false, true, false ]
     */
-    array: (length: number, type: 'number' | 'string' | 'boolean'): number[] | string[] | boolean[] => {
+    array: <T extends 'number' | 'string' | 'boolean'>(length: number, type: T): ArrayType<T> => {
         let result: any[] = [];
 
         for (let i = 0; i < length; i++) {
@@ -76,7 +82,7 @@ const random = {
             }
         }
 
-        return result;
+        return result as ArrayType<T>;
     },
 
     /**
@@ -85,7 +91,6 @@ const random = {
      * @returns {T} A random element from the array
      */
     elemtFromArray: <T>(array: T[]): T | undefined => array[random.number(0, array.length)],
-
 
     /**
      * Get a random key from an object
