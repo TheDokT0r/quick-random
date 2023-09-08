@@ -10,9 +10,35 @@ describe('random', () => {
 
 
     test('string', () => {
+        const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
+        const allDigits = '0123456789';
+
         const length = random.number(1, 100);
         expect(random.string(length).length).toEqual(length);
+
+        const withoutUpperCase = random.string(100, { includeLowerCase: true, includeNumbers: true, includeUppperCase: false });
+        const withoutLowerCase = random.string(100, { includeLowerCase: false, includeNumbers: true, includeUppperCase: true });
+        const withoutNumbers = random.string(100, { includeLowerCase: true, includeNumbers: false, includeUppperCase: true });
+
+        withoutUpperCase.split('').forEach(char => {
+            expect(upperCaseChars.includes(char)).toBeFalsy();
+        });
+
+        withoutLowerCase.split('').forEach(char => {
+            expect(lowerCaseChars.includes(char)).toBeFalsy();
+        });
+
+        withoutNumbers.split('').forEach(char => {
+            expect(allDigits.includes(char)).toBeFalsy();
+        });
     });
+
+
+    test('char', () => {
+        const char = random.char();
+        expect(char.length).toEqual(1);
+    })
 
 
     test('array', () => {

@@ -4,10 +4,20 @@
  * const random = require('random');
 */
 
+const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
+const allDigits = '0123456789';
+const allCharacters = upperCaseChars + lowerCaseChars + allDigits;
+
 /**
  * Which type the random.array operation would return (so it wouldn't return unknown)
  */
 type ArrayType<T> = T extends 'number' ? number[] : T extends 'string' ? string[] : T extends 'boolean' ? boolean[] : never;
+
+/**
+ * Extra options for the random string options
+ */
+type RandomStringOptions = { includeNumbers: boolean, includeUppperCase: boolean, includeLowerCase: boolean };
 
 const random = {
     /**
@@ -26,22 +36,42 @@ const random = {
     /**
      * Generate a random string
      * @param {number} length the length of the string
+     * @param {RandomStringOptions} options (optional) extra options for the generation of the random string:
+     *  * `includeNumbers` (true by default)
+     *  * `includeUpeerCase` (true by default)
+     *  * `includeLowerCase` (true by default)
      * @returns {string} a random string
      * @example
      * random.string(10) // 'aBcDeFgHiJ'
-     * random.string(10) // 'tUvWxYzAbC'
+     * random.string(10, {includeUpperCase: false}) // 'abcdefghij'
     */
-    string: (length: number): string => {
+    string: (length: number, options: RandomStringOptions = { includeNumbers: true, includeUppperCase: true, includeLowerCase: true }): string => {
+        let usedChars = '';
+        if (options.includeNumbers) {
+            usedChars += allDigits;
+        } if (options.includeLowerCase) {
+            usedChars += lowerCaseChars;
+        } if (options.includeUppperCase) {
+            usedChars += upperCaseChars;
+        }
+
         let result = '';
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        const charactersLength = characters.length;
+        const charactersLength = usedChars.length;
 
         for (let i = 0; i < length; i++) {
-            result += characters.charAt(random.number(0, charactersLength));
+            result += usedChars.charAt(random.number(0, charactersLength));
         }
 
         return result;
     },
+
+    /**
+     * @returns {string} a random character
+     * @example
+     * random.char(); //returns 'A'
+     * random.char(); //returns 'b'
+     */
+    char: (): string => allCharacters.charAt(random.number(0, allCharacters.length)),
 
     /**
      * Generate a random boolean
@@ -113,6 +143,5 @@ const random = {
         return values[random.number(0, values.length)];
     }
 }
-
 
 export default random;
