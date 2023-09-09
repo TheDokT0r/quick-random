@@ -1,6 +1,6 @@
 {
   "name": "quick-random",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "A random generator for JS and TS",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -13,8 +13,7 @@
   "scripts": {
     "test": "jest",
     "build": "rm -rf ./lib && tsup",
-    "lint": "tsc",
-    "publish": "npm run lint && npm run build && npm publish"
+    "lint": "tsc"
   },
   "keywords": [
     "random",
