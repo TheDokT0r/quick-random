@@ -3,3 +3,7 @@ __tests__
 src
 node_modules
 jest.config.jest
+.changesets
+.github
+.eslintignore
+.eslintrc.js
