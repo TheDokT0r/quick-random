@@ -96,7 +96,7 @@ const random = {
      * random.array(10, 'boolean') // [ true, false, true, false, true, false, true, false, true, false ]
     */
     array: <T extends 'number' | 'string' | 'boolean'>(length: number, type: T): ArrayType<T> => {
-        let result: any[] = [];
+        const result: unknown[] = [];
 
         for (let i = 0; i < length; i++) {
             switch (type) {
