@@ -83,7 +83,7 @@ The current optional types are: number, string, and boolean (I'm planning on add
 ### Element from array
 
 ```js
-imoprt random from 'quick-random';
+import random from 'quick-random';
 random.elemtFromArray(array);
 ```
 
