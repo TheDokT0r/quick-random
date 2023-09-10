@@ -4,34 +4,28 @@ describe('random', () => {
     test('number', () => {
         expect(random.number(0, 100)).toBeGreaterThanOrEqual(0);
         expect(random.number(0, 100)).toBeLessThanOrEqual(100);
-
         expect(typeof random.number(1, 100) === 'number').toBeTruthy();
+
+        expect(random.number(0.5, 1.5)).toBeGreaterThanOrEqual(0.5);
+        expect(random.number(0.5, 1.5)).toBeLessThanOrEqual(1.5);
+        expect(typeof random.number(0.5, 1.5) === 'number').toBeTruthy();
+
+        expect(random.number(0.5, 100)).toBeGreaterThanOrEqual(0.5);
+        expect(random.number(0.5, 100)).toBeLessThanOrEqual(100);
+        expect(typeof random.number(0.5, 100) === 'number').toBeTruthy();
+
     });
 
 
     test('string', () => {
-        const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
-        const allDigits = '0123456789';
+        const str = random.string(10);
+        expect(str.length).toEqual(10);
+        expect(typeof str === 'string').toBeTruthy();
 
-        const length = random.number(1, 100);
-        expect(random.string(length).length).toEqual(length);
-
-        const withoutUpperCase = random.string(100, { includeLowerCase: true, includeNumbers: true, includeUppperCase: false });
-        const withoutLowerCase = random.string(100, { includeLowerCase: false, includeNumbers: true, includeUppperCase: true });
-        const withoutNumbers = random.string(100, { includeLowerCase: true, includeNumbers: false, includeUppperCase: true });
-
-        withoutUpperCase.split('').forEach(char => {
-            expect(upperCaseChars.includes(char)).toBeFalsy();
-        });
-
-        withoutLowerCase.split('').forEach(char => {
-            expect(lowerCaseChars.includes(char)).toBeFalsy();
-        });
-
-        withoutNumbers.split('').forEach(char => {
-            expect(allDigits.includes(char)).toBeFalsy();
-        });
+        const str2 = random.string(10, 'abc');
+        expect(str2.length).toEqual(10);
+        expect(typeof str2 === 'string').toBeTruthy();
+        expect(str2).toMatch(/[abc]/);
     });
 
 

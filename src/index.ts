@@ -4,10 +4,7 @@
  * const random = require('random');
 */
 
-const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
-const allDigits = '0123456789';
-const allCharacters = upperCaseChars + lowerCaseChars + allDigits;
+const allCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 /**
  * Which type the random.array operation would return (so it wouldn't return unknown)
@@ -17,53 +14,44 @@ type ArrayType<T> = T extends 'number' ? number[] : T extends 'string' ? string[
 /**
  * Extra options for the random string options
  */
-type RandomStringOptions = { includeNumbers: boolean, includeUppperCase: boolean, includeLowerCase: boolean };
 
 const random = {
     /**
-     * 
-     * @param {number} min the minimum number to generate 
-     * @param {number} max the maximum number to generate 
-     * @returns {number} a random number between min and max\
+     * Generate a random number between min and max
+     * @param {number} min the minimum number to generate
+     * @param {number} max the maximum number to generate
+     * @returns {number} a random number between min and max
      * @example
      * random.number(0, 100) // 50
-     * random.number(0, 100) // 10
+     * random.number(0.5, 1.5) // 1.2
      */
     number: (min: number, max: number): number => {
-        return Math.floor(Math.random() * (max - min) + min);
+        if (Number.isInteger(min) && Number.isInteger(max)) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        return Math.random() * (max - min) + min;
     },
 
     /**
      * Generate a random string
      * @param {number} length the length of the string
-     * @param {RandomStringOptions} options (optional) extra options for the generation of the random string:
-     *  * `includeNumbers` (true by default)
-     *  * `includeUpeerCase` (true by default)
-     *  * `includeLowerCase` (true by default)
+     * @param {string} characters the characters to generate the string from (default: allCharacters)
      * @returns {string} a random string
      * @example
      * random.string(10) // 'aBcDeFgHiJ'
      * random.string(10, {includeUpperCase: false}) // 'abcdefghij'
     */
-    string: (length: number, options: RandomStringOptions = { includeNumbers: true, includeUppperCase: true, includeLowerCase: true }): string => {
-        let usedChars = '';
-        if (options.includeNumbers) {
-            usedChars += allDigits;
-        } if (options.includeLowerCase) {
-            usedChars += lowerCaseChars;
-        } if (options.includeUppperCase) {
-            usedChars += upperCaseChars;
-        }
-
+    string: (length: number, characters: string = allCharacters): string => {
         let result = '';
-        const charactersLength = usedChars.length;
+        const charactersLength = characters.length;
 
         for (let i = 0; i < length; i++) {
-            result += usedChars.charAt(random.number(0, charactersLength));
+            result += characters.charAt(random.number(0, charactersLength - 1));
         }
 
         return result;
     },
+
 
     /**
      * @returns {string} a random character
@@ -71,7 +59,7 @@ const random = {
      * random.char(); //returns 'A'
      * random.char(); //returns 'b'
      */
-    char: (): string => allCharacters.charAt(random.number(0, allCharacters.length)),
+    char: (): string => random.string(1),
 
     /**
      * Generate a random boolean
@@ -129,7 +117,7 @@ const random = {
      */
     keyFromObject: <T extends object>(object: T): keyof T => {
         const keys = Object.keys(object);
-        return keys[random.number(0, keys.length)] as keyof T;
+        return keys[random.number(0, keys.length - 1)] as keyof T;
     },
 
 
@@ -140,7 +128,7 @@ const random = {
      */
     valueFromObject: <T extends object>(object: T): T[keyof T] => {
         const values = Object.values(object);
-        return values[random.number(0, values.length)];
+        return values[random.number(0, values.length - 1)];
     }
 }
 
