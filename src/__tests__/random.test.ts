@@ -32,7 +32,31 @@ describe('random', () => {
     test('char', () => {
         const char = random.char();
         expect(char.length).toEqual(1);
-    })
+    });
+
+
+    test('date', () => {
+        expect(random.date()).toBeInstanceOf(Date);
+
+        const minDate = new Date('2021-08-01T12:00:00.000Z');
+        const maxDate = new Date('2023-08-01T12:00:00.000Z');
+
+        expect(random.date(minDate, maxDate)).toBeInstanceOf(Date);
+
+        expect(random.date(minDate, maxDate).getTime()).toBeGreaterThanOrEqual(minDate.getTime());
+        expect(random.date(minDate, maxDate).getTime()).toBeLessThanOrEqual(maxDate.getTime());
+    });
+
+
+    test('symbol', () => {
+        expect(typeof random.symbol() === 'symbol').toBeTruthy();
+    });
+
+    test('bigint', () => {
+        expect(typeof random.bigint(0n, 100n) === 'bigint').toBeTruthy();
+        expect(random.bigint(0n, 100n)).toBeGreaterThanOrEqual(0);
+        expect(random.bigint(0n, 100n)).toBeLessThanOrEqual(100);
+    });
 
 
     test('array', () => {
@@ -54,6 +78,26 @@ describe('random', () => {
         expect(boolArr.length).toEqual(100);
         boolArr.forEach(str => {
             expect(typeof str === 'boolean');
+        });
+
+
+        const smybolArr = random.array(100, 'symbol');
+        expect(smybolArr.length).toEqual(100);
+        smybolArr.forEach(str => {
+            expect(typeof str === 'symbol');
+        });
+
+        const dateArr = random.array(100, 'date');
+        expect(dateArr.length).toEqual(100);
+        dateArr.forEach(str => {
+            expect(str).toBeInstanceOf(Date);
+        });
+
+
+        const bigintArr = random.array(100, 'bigint');
+        expect(bigintArr.length).toEqual(100);
+        bigintArr.forEach(str => {
+            expect(typeof str === 'bigint');
         });
     });
 

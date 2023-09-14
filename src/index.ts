@@ -1,3 +1,5 @@
+import ArrayType from "./@types/ArrayType";
+
 /**
  * Random number, string, boolean, array, element from array
  * @example
@@ -5,12 +7,6 @@
 */
 
 const allCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-/**
- * Which type the random.array operation would return (so it wouldn't return unknown)
- */
-type ArrayType<T> = T extends 'number' ? number[] : T extends 'string' ? string[] : T extends 'boolean' ? boolean[] : never;
-
 /**
  * Extra options for the random string options
  */
@@ -21,6 +17,7 @@ const random = {
      * @param {number} min the minimum number to generate
      * @param {number} max the maximum number to generate
      * @returns {number} a random number between min and max
+     * @see random.bigint for a bigint version
      * @example
      * random.number(0, 100) // 50
      * random.number(0.5, 1.5) // 1.2
@@ -74,16 +71,62 @@ const random = {
 
 
     /**
+     * Generates a random date between minDate and maxDate
+     * @param {Date} minData optional minimum date 
+     * @param {Date maxDate optional maximum date 
+     * @returns {Date} a random date
+     * 
+     * @example
+     * random.date() // 2021-08-01T12:00:00.000Z
+     * random.date(new Date('2021-08-01T12:00:00.000Z'), new Date('2021-08-01T12:00:00.000Z')) // 2021-08-01T12:00:00.000Z
+     */
+    date: (minData?: Date, maxDate?: Date): Date => {
+        const min = minData ? minData.getTime() : 0;
+        const max = maxDate ? maxDate.getTime() : Date.now();
+
+        return new Date(random.number(min, max));
+    },
+
+
+    /**
+     * 
+     * @returns {symbol} a random symbol
+     * @example
+     * random.symbol() // Symbol(5)
+     * random.symbol() // Symbol(10)
+     */
+    symbol: (): symbol => Symbol(random.string(10)),
+
+
+    /**
+     * Generates a random bigint
+     * @param {bigint} min minimum number 
+     * @param {bigint} max maximum number
+     * @returns {bigint} a random bigint
+     * @see random.number for a number version
+     * @example
+     * random.bigint(0n, 100n) // 50n
+     * random.bigint(0n, 100n) // 10n
+     */
+    bigint: (min: bigint, max: bigint): bigint => {
+        return BigInt(random.number(Number(min), Number(max)));
+    },
+
+
+    /**
      * Generate a random array
+     * 
+     * Can generate an array of numbers, strings, booleans, symbols, dates and bigints
      * @param {number} length the length of the array
-     * @param {'number' | 'string' | 'boolean'} type the type of the array
+     * @param {'number' | 'string' | 'boolean' | 'symbol' | 'date' | 'bigint'} type the type of the array
      * @returns {T[]} a random array
      * @example
      * random.array(10, 'number') // [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
      * random.array(10, 'string') // [ 'aBcDeFgHiJ', 'tUvWxYzAbC', 'dEfGhIjKlM', 'nOpQrStUvW', 'xYzAbCdEfG', 'hIjKlMnOpQ', 'rStUvWxYzA', 'bCdEfGhIjK', 'lMnOpQrStU', 'vWxYzAbCdE' ]
      * random.array(10, 'boolean') // [ true, false, true, false, true, false, true, false, true, false ]
+     * random.array(10, 'symbol') // [ Symbol
     */
-    array: <T extends 'number' | 'string' | 'boolean'>(length: number, type: T): ArrayType<T> => {
+    array: <T extends 'number' | 'string' | 'boolean' | 'symbol' | 'date' | 'bigint'>(length: number, type: T): ArrayType<T> => {
         const result: unknown[] = [];
 
         for (let i = 0; i < length; i++) {
@@ -96,6 +139,18 @@ const random = {
                     break;
                 case 'boolean':
                     result.push(random.boolean());
+                    break;
+
+                case 'symbol':
+                    result.push(random.symbol());
+                    break;
+
+                case 'date':
+                    result.push(random.date());
+                    break;
+
+                case 'bigint':
+                    result.push(random.bigint(0n, 100n));
                     break;
             }
         }
@@ -129,7 +184,7 @@ const random = {
     valueFromObject: <T extends object>(object: T): T[keyof T] => {
         const values = Object.values(object);
         return values[random.number(0, values.length - 1)];
-    }
+    },
 }
 
 export default random;
