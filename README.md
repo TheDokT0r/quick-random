@@ -34,14 +34,14 @@ pnpm add quick-random
 
 It's pretty simple. Just import the function you want to use, and then call it. For example, if I wanted to generate a random number between 1 and 10, I would do this:
 
-# Random number
+## Random number
 
 ```js
 import random from "quick-random";
 random.number(1, 10);
 ```
 
-# Random string
+## Random string
 
 ```js
 import random from "quick-random";
