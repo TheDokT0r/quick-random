@@ -1,10 +1,12 @@
 # quick-random
+
 Quick as in useful, not as in fast
 
 [![NPM](https://nodei.co/npm/quick-random.png)](https://nodei.co/npm/quick-random/)
 
 [![npm version](https://badge.fury.io/js/quick-random.svg)](https://badge.fury.io/js/quick-random)
 [![install size](https://packagephobia.com/badge?p=quick-random)](https://packagephobia.com/result?p=quick-random)
+
 ## What is it?
 
 Quick random is a JavaScript/Typescript library that inclues multiple functions for generating random numbers, letters, strings, objects and more. I've made this function to be as easy to use as possible, and I hope you enjoy it!
@@ -59,7 +61,9 @@ random.string(10, "abc");
 ```
 
 ### Random object
+
 This method takes an object as a parameter, and returns a new object with random values (It even supports nested objects!). For example:
+
 ```js
 import random from "quick-random";
 const object = {
@@ -71,6 +75,7 @@ const object = {
 
 const randomObject = random.object(object);
 ```
+
 It's important to note that at the moment, this method doesn't support symbols as a type.
 
 ### Random letter
@@ -88,19 +93,19 @@ random.boolean();
 ```
 
 ### Random date
-    
-    ```js
-    import random from "quick-random";
-    random.date();
-    random.date("2021-01-01", "2021-12-31");
-    ```
+
+```js
+import random from "quick-random";
+random.date();
+random.date("2021-01-01", "2021-12-31");
+```
 
 ### Random symbol
-    
-    ```js
-    import random from "quick-random";
-    random.symbol();
-    ```
+
+```js
+import random from "quick-random";
+random.symbol();
+```
 
 ### Random bigints
 
@@ -124,7 +129,7 @@ The current optional types are: number, string, and boolean (I'm planning on add
 ### Element from array
 
 ```js
-import random from 'quick-random';
+import random from "quick-random";
 random.elemtFromArray(array);
 ```
 
