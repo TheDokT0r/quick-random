@@ -109,7 +109,6 @@ import random from "quick-random";
 random.bigint();
 random.bigint(100n, 1000n);
 ```
-```
 
 ### Random array item
 
