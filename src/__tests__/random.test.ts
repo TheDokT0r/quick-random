@@ -52,6 +52,8 @@ describe('random', () => {
 
         expect(random.date(minDate, maxDate).getTime()).toBeGreaterThanOrEqual(minDate.getTime());
         expect(random.date(minDate, maxDate).getTime()).toBeLessThanOrEqual(maxDate.getTime());
+
+        expect(random.date()).not.toEqual(new Date());
     });
 
 
@@ -154,39 +156,31 @@ describe('random', () => {
 
 
     test('object', () => {
-        const object = {
-            a: 1,
-            b: 'string',
-            c: true,
-            // d: new Date(),
-            e: 100n,
-            g: {
+        const presetObject = {
+            int: 1,
+            str: 'hello',
+            bool: true,
+            date: new Date(),
+            bigint: 1n,
+            object: {
                 a: 1,
-                b: 'string',
-                c: true,
-                // d: new Date(),
-                f: 100n,
-            }
+                b: 2,
+                c: 3,
+            },
+            und: undefined,
         }
 
 
-        const randomObject = random.object(object);
+        const randomObject = random.object(presetObject);
 
-        console.log(object);
-        console.log(randomObject);
+        expect(typeof randomObject.int === 'number').toBeTruthy();
+        expect(typeof randomObject.str === 'string').toBeTruthy();
+        expect(typeof randomObject.bool === 'boolean').toBeTruthy();
+        expect(randomObject.date).toBeInstanceOf(Date);
+        expect(typeof randomObject.bigint === 'bigint').toBeTruthy();
+        expect(typeof randomObject.object === 'object').toBeTruthy();
+        expect(typeof randomObject.und === 'undefined').toBeTruthy();
 
-        expect(randomObject.a).not.toEqual(object.a);
-        expect(randomObject.b).not.toEqual(object.b);
-        expect(randomObject.c).not.toEqual(object.c);
-        // expect(randomObject.d).not.toEqual(object.d);
-        expect(randomObject.e).not.toEqual(object.e);
-        expect(randomObject.g).not.toEqual(object.g);
-
-        expect(typeof randomObject.a === 'number').toBeTruthy();
-        expect(typeof randomObject.b === 'string').toBeTruthy();
-        expect(typeof randomObject.c === 'boolean').toBeTruthy();
-        // expect(randomObject.d).toBeInstanceOf(Date);
-        expect(typeof randomObject.e === 'bigint').toBeTruthy();
-        expect(typeof randomObject.g === 'object').toBeTruthy();
+        expect(Object.keys(randomObject).length).toEqual(Object.keys(presetObject).length);
     });
 });

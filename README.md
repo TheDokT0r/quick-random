@@ -121,7 +121,7 @@ In this function, you can specify the type of array you want to generate. For ex
 
 ```js
 import random from "quick-random";
-random.array("string");
+random.array(10 "string");
 ```
 
 The current optional types are: number, string, and boolean (I'm planning on adding more in the future).

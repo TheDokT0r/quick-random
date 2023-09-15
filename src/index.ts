@@ -232,6 +232,13 @@ const random = {
                     randomObject[key as keyof typeof object] = random.object(element as unknown as T) as unknown as T[keyof T];
                     break;
 
+                case 'undefined':
+                    randomObject[key as keyof typeof object] = undefined as unknown as T[keyof T];
+                    break;
+
+                case 'function':
+                    throw new Error('Function is not supported at the moment');
+
                 default:
                     throw new Error('Invalid type');
             }
