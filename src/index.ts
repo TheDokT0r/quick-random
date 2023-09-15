@@ -135,7 +135,7 @@ const random = {
                     result.push(random.number(0, 100));
                     break;
                 case 'string':
-                    result.push(random.string(random.number(0, 10)));
+                    result.push(random.string(random.number(1, 10)));
                     break;
                 case 'boolean':
                     result.push(random.boolean());
