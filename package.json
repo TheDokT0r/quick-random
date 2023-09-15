@@ -12,7 +12,7 @@
   "homepage": "https://github.com/TheDokT0r/random-js",
   "scripts": {
     "test": "jest",
-    "build": "rm -rf ./lib && tsup",
+    "build": "rimraf ./lib && tsup",
     "lint": "tsc"
   },
   "keywords": [
@@ -32,6 +32,7 @@
     "@typescript-eslint/parser": "^6.6.0",
     "eslint": "^8.49.0",
     "jest": "^29.6.4",
+    "rimraf": "^5.0.1",
     "ts-jest": "^29.1.1",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
@@ -39,7 +40,5 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  },
-  "dependencies": {
   }
 }

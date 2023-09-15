@@ -1,4 +1,5 @@
 import ArrayType from "./@types/ArrayType";
+import PrimitiveTypeStrings from "./@types/PrimitiveTypeStrings";
 
 /**
  * Random number, string, boolean, array, element from array
@@ -82,7 +83,7 @@ const random = {
      */
     date: (minData?: Date, maxDate?: Date): Date => {
         const min = minData ? minData.getTime() : 0;
-        const max = maxDate ? maxDate.getTime() : Date.now();
+        const max = maxDate ? maxDate.getTime() : Date.now() + 100000000000;
 
         return new Date(random.number(min, max));
     },
@@ -112,13 +113,12 @@ const random = {
         return BigInt(random.number(Number(min), Number(max)));
     },
 
-
     /**
      * Generate a random array
      * 
      * Can generate an array of numbers, strings, booleans, symbols, dates and bigints
      * @param {number} length the length of the array
-     * @param {'number' | 'string' | 'boolean' | 'symbol' | 'date' | 'bigint'} type the type of the array
+     * @param {T} type the type of the array
      * @returns {T[]} a random array
      * @example
      * random.array(10, 'number') // [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
@@ -126,7 +126,7 @@ const random = {
      * random.array(10, 'boolean') // [ true, false, true, false, true, false, true, false, true, false ]
      * random.array(10, 'symbol') // [ Symbol
     */
-    array: <T extends 'number' | 'string' | 'boolean' | 'symbol' | 'date' | 'bigint'>(length: number, type: T): ArrayType<T> => {
+    array: <T extends PrimitiveTypeStrings>(length: number, type: T): ArrayType<T> => {
         const result: unknown[] = [];
 
         for (let i = 0; i < length; i++) {
@@ -152,6 +152,9 @@ const random = {
                 case 'bigint':
                     result.push(random.bigint(0n, 100n));
                     break;
+
+                default:
+                    throw new Error('Invalid type');
             }
         }
 
@@ -185,6 +188,45 @@ const random = {
         const values = Object.values(object);
         return values[random.number(0, values.length - 1)];
     },
+
+
+    object: <T extends object>(object: T): T => {
+        const randomObject = structuredClone(object);
+
+        Object.keys(object).forEach(key => {
+            const element = object[key as keyof typeof object];
+
+            switch (typeof element) {
+                case 'number':
+                    randomObject[key as keyof typeof object] = random.number(0, 100) as unknown as T[keyof T];
+                    break;
+
+                case 'string':
+                    randomObject[key as keyof typeof object] = random.string(random.number(0, 10)) as unknown as T[keyof T];
+                    break;
+
+                case 'boolean':
+                    randomObject[key as keyof typeof object] = random.boolean() as unknown as T[keyof T];
+                    break;
+
+                case 'symbol':
+                    throw new Error('Symbol is not supported in structured clone algorithm');
+
+                case 'bigint':
+                    randomObject[key as keyof typeof object] = random.bigint(0n, 100n) as unknown as T[keyof T];
+                    break;
+
+                case 'object':
+                    randomObject[key as keyof typeof object] = random.object(element as unknown as T) as unknown as T[keyof T];
+                    break;
+
+                default:
+                    throw new Error('Invalid type');
+            }
+        });
+
+        return randomObject;
+    }
 }
 
 export default random;

@@ -14,6 +14,13 @@ describe('random', () => {
         expect(random.number(0.5, 100)).toBeLessThanOrEqual(100);
         expect(typeof random.number(0.5, 100) === 'number').toBeTruthy();
 
+        expect(random.number(-100, -1)).toBeGreaterThanOrEqual(-100);
+        expect(random.number(-100, -1)).toBeLessThanOrEqual(-1);
+
+        expect(random.number(-100, 100)).toBeGreaterThanOrEqual(-100);
+        expect(random.number(-100, 100)).toBeLessThanOrEqual(100);
+
+        expect(random.number(1, 1)).toEqual(1);
     });
 
 
@@ -143,5 +150,43 @@ describe('random', () => {
         const value = random.valueFromObject(object);
 
         expect(Object.values(object).includes(value)).toBeTruthy();
+    });
+
+
+    test('object', () => {
+        const object = {
+            a: 1,
+            b: 'string',
+            c: true,
+            d: new Date(),
+            e: 100n,
+            g: {
+                a: 1,
+                b: 'string',
+                c: true,
+                d: new Date(),
+                f: 100n,
+            }
+        }
+
+        
+        const randomObject = random.object(object);
+        
+        console.log(object);
+        console.log(randomObject);
+
+        expect(randomObject.a).not.toEqual(object.a);
+        expect(randomObject.b).not.toEqual(object.b);
+        expect(randomObject.c).not.toEqual(object.c);
+        expect(randomObject.d).not.toEqual(object.d);
+        expect(randomObject.e).not.toEqual(object.e);
+        expect(randomObject.g).not.toEqual(object.g);
+
+        expect(typeof randomObject.a === 'number').toBeTruthy();
+        expect(typeof randomObject.b === 'string').toBeTruthy();
+        expect(typeof randomObject.c === 'boolean').toBeTruthy();
+        expect(randomObject.d).toBeInstanceOf(Date);
+        expect(typeof randomObject.e === 'bigint').toBeTruthy();
+        expect(typeof randomObject.g === 'object').toBeTruthy();
     });
 });
