@@ -1,15 +1,14 @@
 import random from '..';
 
-describe('elementFaromArray', () => {
-    it('should return a random element from an array', () => {
-        const arr = random.array(100, 'string');
 
-        const element = random.elemtFromArray(arr);
-        expect(element).toBeTruthy();
-        expect(typeof element === 'string').toBeTruthy();
+describe('elemtFromArray', () => {
+    it('should return undefined for an empty array', () => {
+        expect(random.elemtFromArray([])).toBeUndefined();
+    });
 
-        if (element) {
-            expect(arr.includes(element)).toBeTruthy();
-        }
+    it('should return a random element from the array', () => {
+        const array = [1, 2, 3, 4, 5];
+        const randomElement = random.elemtFromArray(array);
+        expect(array).toContain(randomElement);
     });
 });

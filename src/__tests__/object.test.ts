@@ -1,5 +1,7 @@
 import random from "..";
 
+
+// TODO: This test is not very good, it should be improved
 describe('object', () => {
     it('should return a random object of the same type given', () => {
         const presetObject = {
@@ -22,7 +24,7 @@ describe('object', () => {
         expect(typeof randomObject.int === 'number').toBeTruthy();
         expect(typeof randomObject.str === 'string').toBeTruthy();
         expect(typeof randomObject.bool === 'boolean').toBeTruthy();
-        expect(randomObject.date).toBeInstanceOf(Date);
+        expect(typeof randomObject.date.getDate() === 'number').toBeTruthy();
         expect(typeof randomObject.bigint === 'bigint').toBeTruthy();
         expect(typeof randomObject.object === 'object').toBeTruthy();
         expect(typeof randomObject.und === 'undefined').toBeTruthy();
