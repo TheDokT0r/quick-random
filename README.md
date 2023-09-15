@@ -1,7 +1,10 @@
 # quick-random
+Quick as in useful, not as in fast
 
-## (It's not actually quick. I just like the name.)
+[![NPM](https://nodei.co/npm/quick-random.png)](https://nodei.co/npm/quick-random/)
 
+[![npm version](https://badge.fury.io/js/quick-random.svg)](https://badge.fury.io/js/quick-random)
+[![install size](https://packagephobia.com/badge?p=quick-random)](https://packagephobia.com/result?p=quick-random)
 ## What is it?
 
 Quick random is a JavaScript/Typescript library that inclues multiple functions for generating random numbers, letters, strings, and more. I've made this function to be as easy to use as possible, and I hope you enjoy it!
@@ -54,6 +57,21 @@ you can also specificy the specific characters you want to use:
 import random from "quick-random";
 random.string(10, "abc");
 ```
+
+### Random object
+This method takes an object as a parameter, and returns a new object with random values (It even supports nested objects!). For example:
+```js
+import random from "quick-random";
+const object = {
+    name: random.string(10),
+    age: random.number(1, 100),
+    isCool: random.boolean()
+    moreInfo: {}
+}
+
+const randomObject = random.object(object);
+```
+It's important to note that at the moment, this method doesn't support symbols as a type.
 
 ### Random letter
 

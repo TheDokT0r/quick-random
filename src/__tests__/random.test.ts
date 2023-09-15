@@ -169,9 +169,9 @@ describe('random', () => {
             }
         }
 
-        
+
         const randomObject = random.object(object);
-        
+
         console.log(object);
         console.log(randomObject);
 

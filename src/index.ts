@@ -190,6 +190,16 @@ const random = {
     },
 
 
+    /**
+     * Generates a random object based on the object passed
+     * 
+     * Important to note that the symbol type is not supported at the moment
+     * @param {T} object a object to generate a random object from 
+     * @returns {T} a random object of the same type as the object passed
+     * @example
+     * random.object({a: 1, b: 'hello', c: {}}) // { a: 50, b: 'aBcDeFgHiJ', c: {} }
+     * 
+     */
     object: <T extends object>(object: T): T => {
         const randomObject = structuredClone(object);
 
@@ -210,7 +220,7 @@ const random = {
                     break;
 
                 case 'symbol':
-                    throw new Error('Symbol is not supported in structured clone algorithm');
+                    throw new Error('Symbol is not supported at the moment');
 
                 case 'bigint':
                     randomObject[key as keyof typeof object] = random.bigint(0n, 100n) as unknown as T[keyof T];
