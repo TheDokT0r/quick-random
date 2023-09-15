@@ -7,7 +7,7 @@ Quick as in useful, not as in fast
 [![install size](https://packagephobia.com/badge?p=quick-random)](https://packagephobia.com/result?p=quick-random)
 ## What is it?
 
-Quick random is a JavaScript/Typescript library that inclues multiple functions for generating random numbers, letters, strings, and more. I've made this function to be as easy to use as possible, and I hope you enjoy it!
+Quick random is a JavaScript/Typescript library that inclues multiple functions for generating random numbers, letters, strings, objects and more. I've made this function to be as easy to use as possible, and I hope you enjoy it!
 
 ## Why though?
 

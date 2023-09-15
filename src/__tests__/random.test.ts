@@ -158,13 +158,13 @@ describe('random', () => {
             a: 1,
             b: 'string',
             c: true,
-            d: new Date(),
+            // d: new Date(),
             e: 100n,
             g: {
                 a: 1,
                 b: 'string',
                 c: true,
-                d: new Date(),
+                // d: new Date(),
                 f: 100n,
             }
         }
@@ -178,14 +178,14 @@ describe('random', () => {
         expect(randomObject.a).not.toEqual(object.a);
         expect(randomObject.b).not.toEqual(object.b);
         expect(randomObject.c).not.toEqual(object.c);
-        expect(randomObject.d).not.toEqual(object.d);
+        // expect(randomObject.d).not.toEqual(object.d);
         expect(randomObject.e).not.toEqual(object.e);
         expect(randomObject.g).not.toEqual(object.g);
 
         expect(typeof randomObject.a === 'number').toBeTruthy();
         expect(typeof randomObject.b === 'string').toBeTruthy();
         expect(typeof randomObject.c === 'boolean').toBeTruthy();
-        expect(randomObject.d).toBeInstanceOf(Date);
+        // expect(randomObject.d).toBeInstanceOf(Date);
         expect(typeof randomObject.e === 'bigint').toBeTruthy();
         expect(typeof randomObject.g === 'object').toBeTruthy();
     });

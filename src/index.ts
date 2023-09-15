@@ -191,6 +191,8 @@ const random = {
 
 
     /**
+     * `Still experimental`
+     * 
      * Generates a random object based on the object passed
      * 
      * Important to note that the symbol type is not supported at the moment
