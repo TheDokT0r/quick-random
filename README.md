@@ -97,7 +97,7 @@ random.boolean();
 ```js
 import random from "quick-random";
 random.date();
-random.date("2021-01-01", "2021-12-31");
+random.date(new Date("2021-01-01"), new Date("2021-12-31"));
 ```
 
 ### Random symbol
