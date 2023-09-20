@@ -5,6 +5,7 @@ node_modules
 jest.config.jest
 .changesets
 .github
+.gitignore
 .eslintignore
 .eslintrc.js
 coverage
