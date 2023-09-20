@@ -229,7 +229,11 @@ const random = {
                     break;
 
                 case 'object':
-                    randomObject[key as keyof typeof object] = random.object(element as unknown as T) as unknown as T[keyof T];
+                    if (Array.isArray(element)) randomObject[key as keyof typeof object] = random.array(10, 'number') as unknown as T[keyof T];
+                    else if (element instanceof Date) randomObject[key as keyof typeof object] = random.date() as unknown as T[keyof T];
+                    else if (element === null) randomObject[key as keyof typeof object] = null as unknown as T[keyof T];
+                    else
+                        randomObject[key as keyof typeof object] = random.object(element as unknown as T) as unknown as T[keyof T];
                     break;
 
                 case 'undefined':
