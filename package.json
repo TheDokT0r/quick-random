@@ -1,6 +1,6 @@
 {
   "name": "quick-random",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "A random generator for JS and TS",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -16,8 +16,8 @@
     "lint": "tsc"
   },
   "keywords": [
+    "quick-random",
     "random",
-    "randomizer",
     "random-js"
   ],
   "files": [

@@ -1,19 +1,19 @@
 # quick-random
 
-Quick as in useful, not as in fast
 
 [![NPM](https://nodei.co/npm/quick-random.png)](https://nodei.co/npm/quick-random/)
 
+![NPM](https://img.shields.io/npm/l/quick-random)
 [![npm version](https://badge.fury.io/js/quick-random.svg)](https://badge.fury.io/js/quick-random)
 [![install size](https://packagephobia.com/badge?p=quick-random)](https://packagephobia.com/result?p=quick-random)
 
 ## What is it?
 
-Quick random is a JavaScript/Typescript library that inclues multiple functions for generating random numbers, letters, strings, objects and more. I've made this function to be as easy to use as possible, and I hope you enjoy it!
+Quick random is a JavaScript/Typescript library that includes multiple functions for generating random numbers, letters, strings, objects and more. I've made this function to be as easy to use as possible, and I hope you enjoy it!
 
 ## Why though?
 
-As we all know, random in JavaScript kinda sucks (sorry, Math.random()). I've wanted an eaiser way to generate random data (mostly for my own projects). I was also kinda just bored lol.
+As we all know, random in JavaScript kinda sucks (sorry, Math.random()). I've wanted an easier way to generate random data (mostly for my own projects).
 
 ## Installation
 
@@ -37,7 +37,7 @@ pnpm add quick-random
 
 ## How do I use it?
 
-It's pretty simple. Just import the function you want to use, and then call it. For example, if I wanted to generate a random number between 1 and 10, I would do this:
+It's pretty simple. Just import the function you want to use, and then call it. Here's a list of all the functions you can use:
 
 ### Random number
 
@@ -53,7 +53,7 @@ import random from "quick-random";
 random.string(10);
 ```
 
-you can also specificy the specific characters you want to use:
+you can also specify the specific characters you want to use:
 
 ```js
 import random from "quick-random";
@@ -78,7 +78,7 @@ const randomObject = random.object(object);
 
 It's important to note that at the moment, this method doesn't support symbols as a type.
 
-### Random letter
+### Random character
 
 ```js
 import random from "quick-random";
@@ -130,7 +130,7 @@ The current optional types are: number, string, and boolean (I'm planning on add
 
 ```js
 import random from "quick-random";
-random.elemtFromArray(array);
+const element = random.elementFromArray(array);
 ```
 
 ### Key from object
@@ -146,3 +146,8 @@ random.keyFromObject(object);
 import random from "quick-random";
 random.valueFromObject(object);
 ```
+
+# How can I contribute?
+Feel free to open a pull request or an issue! I'm always open to suggestions and improvements.
+
+# Hope you enjoy!

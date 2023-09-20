@@ -166,7 +166,7 @@ const random = {
      * @param {T[]} array the array to get the element from 
      * @returns {T} A random element from the array
      */
-    elemtFromArray: <T>(array: T[]): T | undefined => array[random.number(0, array.length)],
+    elementFromArray: <T>(array: T[]): T | undefined => array[random.number(0, array.length)],
 
     /**
      * Get a random key from an object
