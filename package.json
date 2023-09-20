@@ -11,7 +11,7 @@
   },
   "homepage": "https://github.com/TheDokT0r/random-js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "rimraf ./lib && tsup",
     "lint": "tsc"
   },

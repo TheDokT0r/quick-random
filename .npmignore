@@ -7,3 +7,4 @@ jest.config.jest
 .github
 .eslintignore
 .eslintrc.js
+coverage
