@@ -98,6 +98,9 @@ random.boolean();
 import random from "quick-random";
 random.date();
 random.date(new Date("2021-01-01"), new Date("2021-12-31"));
+
+// It also accepts strings!
+random.date("2021-01-01", "2021-12-31");
 ```
 
 ### Random symbol

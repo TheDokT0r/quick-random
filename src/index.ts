@@ -81,9 +81,9 @@ const random = {
      * random.date() // 2021-08-01T12:00:00.000Z
      * random.date(new Date('2021-08-01T12:00:00.000Z'), new Date('2021-08-01T12:00:00.000Z')) // 2021-08-01T12:00:00.000Z
      */
-    date: (minData?: Date, maxDate?: Date): Date => {
-        const min = minData ? minData.getTime() : 0;
-        const max = maxDate ? maxDate.getTime() : Date.now() + 100000000000;
+    date: (minData?: Date | string, maxDate?: Date | string): Date => {
+        const min = minData ? new Date(minData).getTime() : 0;
+        const max = maxDate ? new Date(maxDate).getTime() : Date.now() + 100000000000;
 
         return new Date(random.number(min, max));
     },
@@ -166,7 +166,7 @@ const random = {
      * @param {T[]} array the array to get the element from 
      * @returns {T} A random element from the array
      */
-    elementFromArray: <T>(array: T[]): T | undefined => array[random.number(0, array.length)],
+    elementFromArray: <T>(array: T[]): T | undefined => array[random.number(0, array.length - 1)],
 
     /**
      * Get a random key from an object
