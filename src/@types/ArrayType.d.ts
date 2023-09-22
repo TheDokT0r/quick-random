@@ -7,6 +7,7 @@
         : T extends 'date' ? Date[]
         : T extends 'bigint' ? bigint[]
         : T extends 'symbol' ? symbol[]
+        : T extends 'unknown' ? unknown[]
         : never;
 
 export default ArrayType;

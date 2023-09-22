@@ -48,4 +48,13 @@ describe('arrray', () => {
             expect(typeof str === 'bigint');
         });
     });
+
+
+    it('should return an array of random types', () => {
+        const arr = random.array(100);
+        expect(arr.length).toEqual(100);
+        arr.forEach((str: unknown) => {
+            expect(typeof str === 'string' || typeof str === 'number' || typeof str === 'boolean' || typeof str === 'symbol' || str instanceof Date || typeof str === 'bigint');
+        });
+    });
 });

@@ -118,7 +118,7 @@ const random = {
      * 
      * Can generate an array of numbers, strings, booleans, symbols, dates and bigints
      * @param {number} length the length of the array
-     * @param {T} type the type of the array
+     * @param {T} type (random by default) the type of the array
      * @returns {T[]} a random array
      * @example
      * random.array(10, 'number') // [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
@@ -126,7 +126,7 @@ const random = {
      * random.array(10, 'boolean') // [ true, false, true, false, true, false, true, false, true, false ]
      * random.array(10, 'symbol') // [ Symbol
     */
-    array: <T extends PrimitiveTypeStrings>(length: number, type: T): ArrayType<T> => {
+    array: <T extends PrimitiveTypeStrings>(length: number, type: T = 'unknown' as T): ArrayType<T> => {
         const result: unknown[] = [];
 
         for (let i = 0; i < length; i++) {
@@ -151,6 +151,10 @@ const random = {
 
                 case 'bigint':
                     result.push(random.bigint(0n, 100n));
+                    break;
+
+                case 'unknown':
+                    result.push(random.elementFromArray(['number', 'string', 'boolean', 'symbol', 'date', 'bigint']));
                     break;
 
                 default:
