@@ -12,7 +12,7 @@ const allCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
  * Extra options for the random string options
  */
 
-const random = {
+export const random = {
     /**
      * Generate a random number between min and max
      * @param {number} min the minimum number to generate

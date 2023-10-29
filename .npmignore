@@ -9,3 +9,4 @@ jest.config.jest
 .eslintignore
 .eslintrc.js
 coverage
+LICENSE

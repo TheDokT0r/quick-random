@@ -1,6 +1,6 @@
 {
   "name": "quick-random",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "A random generator for JS and TS",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
