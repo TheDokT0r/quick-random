@@ -37,7 +37,15 @@ pnpm add quick-random
 
 ## How do I use it?
 
-It's pretty simple. Just import the function you want to use, and then call it. Here's a list of all the functions you can use:
+It's pretty simple. Just import the function you want to use, and then call it.
+
+```js
+import random from "quick-random"; //TS
+import { random } from "quick-random"; //JS ESM
+const { random } = require("quick-random"); //JS CommonJS
+```
+
+ Here's a list of all available functions:
 
 ### Random number
 
